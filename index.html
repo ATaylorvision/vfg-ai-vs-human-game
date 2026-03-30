@@ -8,278 +8,277 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#0d1f3c;
-  --navy-mid:#1a3358;
-  --navy-light:#224070;
-  --gold:#b89a4e;
-  --gold-light:#d4b96a;
-  --white:#ffffff;
-  --gray-bg:#f0f2f5;
-  --gray-border:#dde1e8;
+  --navy2:#152d50;
+  --teal:#0e8c8c;
+  --teal-light:#13b5b5;
+  --gold:#c9a227;
+  --gold-light:#f0c84a;
+  --coral:#e05c3a;
+  --coral-light:#f07a5a;
+  --purple:#5c3fad;
+  --purple-light:#7b5fd4;
+  --mint:#1aab7a;
+  --mint-light:#22d49a;
+  --white:#fff;
+  --offwhite:#f6f8fc;
+  --gray:#e8ecf2;
   --gray-text:#5a6474;
-  --correct-bg:#eaf5ee;
-  --correct-border:#a3d4b5;
-  --correct-text:#1a6b3c;
-  --wrong-bg:#fdf1ee;
-  --wrong-border:#e8b8ae;
-  --wrong-text:#8b3a2a;
-  --both-bg:#eaf1f8;
-  --both-border:#a3c4d8;
-  --both-text:#1a4a6b;
-  --r:10px;
+  --r:14px;
+  --r-sm:9px;
+}
+html,body{height:100%;font-family:'Segoe UI',system-ui,sans-serif;background:var(--offwhite);color:var(--navy);overflow:hidden}
+
+/* gradient bg */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:linear-gradient(135deg,#0d1f3c 0%,#1a3a5c 40%,#0e4a6e 70%,#0d3a4a 100%);
+  z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse at 20% 20%,rgba(14,140,140,.18) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 80%,rgba(201,162,39,.12) 0%,transparent 60%);
+  z-index:0;
 }
 
-html,body{
-  height:100%;
-  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-  background:var(--gray-bg);
-  color:var(--navy);
-  font-size:15px;
-  line-height:1.5;
-  overflow:hidden; /* no outer scroll — all scroll is internal */
-}
+.shell{position:relative;z-index:1;display:flex;flex-direction:column;height:100vh;max-width:1100px;margin:0 auto;  padding:12px 16px;gap:8px}
 
-/* ── SHELL: fills the viewport, flex column ── */
-.shell{
-  display:flex;
-  flex-direction:column;
-  height:100vh;
-  max-width:1100px;
-  margin:0 auto;
-  padding:14px 18px 14px;
-  gap:10px;
-}
 
-/* ── HEADER BAND ── */
-.header{
-  background:var(--navy);
+/* ── HEADER ── */
+.hdr{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:var(--r);
-  padding:14px 22px;
-  display:flex;
-  align-items:flex-start;
-  gap:16px;
+  padding:12px 20px;
+  backdrop-filter:blur(8px);
   flex-shrink:0;
 }
-.header-icon{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--navy-light);display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;margin-top:2px;
+.hdr-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--teal-light));
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(14,140,140,.4);
 }
-.header-icon svg{width:18px;height:18px}
-.header-text h1{font-size:.88rem;font-weight:700;color:var(--gold-light);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
-.header-text p{font-size:.82rem;color:#b0bfd4;line-height:1.55}
+.hdr-icon svg{width:22px;height:22px}
+.hdr-text h1{font-size:.92rem;font-weight:800;color:var(--gold-light);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.hdr-text p{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.5}
+.hdr-badges{margin-left:auto;display:flex;gap:8px;flex-shrink:0}
+.badge{
+  font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 10px;border-radius:99px;
+}
+.badge-ai{background:rgba(14,140,140,.25);color:var(--teal-light);border:1px solid rgba(14,140,140,.4)}
+.badge-h{background:rgba(224,92,58,.2);color:var(--coral-light);border:1px solid rgba(224,92,58,.35)}
+.badge-b{background:rgba(92,63,173,.2);color:var(--purple-light);border:1px solid rgba(92,63,173,.35)}
 
-/* ── LEAD BAR ── */
+/* ── LEAD ── */
 .lead{
-  background:var(--white);
+  background:linear-gradient(90deg,rgba(201,162,39,.15),rgba(201,162,39,.05));
   border-left:4px solid var(--gold);
-  border-radius:0 var(--r) var(--r) 0;
-  padding:10px 18px;
-  flex-shrink:0;
+  border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:9px 16px;flex-shrink:0;
 }
-.lead p{font-size:.87rem;font-weight:600;color:var(--navy)}
+.lead p{font-size:.85rem;font-weight:700;color:var(--gold-light)}
 
 /* ── GAME PANEL ── */
 .panel{
-  background:var(--white);
-  border-radius:var(--r);
-  box-shadow:0 2px 16px rgba(13,31,60,.08);
-  display:flex;
-  flex-direction:column;
-  flex:1;
-  min-height:0; /* critical for flex scroll child */
-  overflow:hidden;
+  background:var(--white);border-radius:var(--r);
+  box-shadow:0 8px 40px rgba(0,0,0,.25),0 2px 8px rgba(0,0,0,.15);
+  display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;
 }
 
 /* progress strip */
-.prog-strip{
-  background:var(--navy);
-  padding:11px 20px 10px;
-  flex-shrink:0;
+.prog{
+  background:linear-gradient(90deg,var(--navy),var(--navy2));
+  padding:10px 20px 9px;flex-shrink:0;
 }
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
-.prog-meta span{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-.prog-label{color:#c0cedf}
-.prog-score{color:var(--gold-light)}
-.bar-track{background:var(--navy-light);border-radius:99px;height:5px}
-.bar-fill{background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:99px;height:100%;transition:width .4s ease}
+.prog-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.prog-lbl{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.prog-score{display:flex;align-items:center;gap:6px}
+.score-pill{
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  color:var(--navy);font-size:.72rem;font-weight:800;
+  padding:2px 10px;border-radius:99px;letter-spacing:.04em;
+}
+.bar-track{background:rgba(255,255,255,.12);border-radius:99px;height:6px;overflow:hidden}
+.bar-fill{
+  background:linear-gradient(90deg,var(--teal),var(--teal-light),var(--gold-light));
+  border-radius:99px;height:100%;transition:width .5s cubic-bezier(.4,0,.2,1);
+}
 
-/* scrollable inner — only this part scrolls if needed */
-.panel-inner{
-  flex:1;
-  overflow-y:auto;
-  padding:20px 24px 0;
-  -webkit-overflow-scrolling:touch;
-}
+/* scrollable body */
+.panel-body{flex:1;overflow-y:auto;padding:20px 24px 4px;-webkit-overflow-scrolling:touch}
 
 /* scenario */
-.q-num{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-text);font-weight:700;margin-bottom:4px}
-.q-title{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:8px}
-.q-desc{font-size:.9rem;color:#3a4a5e;line-height:1.65;margin-bottom:18px}
+.q-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--gray-text);margin-bottom:6px;
+}
+.q-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block}
+.q-title{font-size:1.08rem;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.q-desc{
+  font-size:.88rem;color:#3a4a5e;line-height:1.7;margin-bottom:18px;
+  padding:12px 16px;background:var(--offwhite);border-radius:var(--r-sm);
+  border-left:3px solid var(--gray);
+}
 
 /* answer buttons */
-.answers{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.answers{display:flex;gap:10px;margin-bottom:14px}
 .ans-btn{
-  flex:1;min-width:90px;
-  padding:10px 8px;
-  border-radius:7px;
-  border:2px solid var(--gray-border);
-  background:var(--white);
-  color:var(--navy);
-  font-size:.9rem;font-weight:700;
-  cursor:pointer;letter-spacing:.03em;
-  transition:background .15s,border-color .15s,transform .15s,box-shadow .15s;
+  flex:1;padding:12px 8px;border-radius:10px;border:2px solid transparent;
+  font-size:.9rem;font-weight:800;cursor:pointer;letter-spacing:.04em;
+  transition:all .18s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
 }
-.ans-btn:hover:not(:disabled){
-  background:var(--navy);color:var(--white);border-color:var(--navy);
-  transform:translateY(-1px);box-shadow:0 4px 10px rgba(13,31,60,.15);
+.ans-btn::before{
+  content:'';position:absolute;inset:0;opacity:0;
+  transition:opacity .18s;
 }
+.ans-ai{background:linear-gradient(135deg,rgba(14,140,140,.08),rgba(14,181,181,.06));border-color:rgba(14,140,140,.3);color:var(--teal)}
+.ans-human{background:linear-gradient(135deg,rgba(224,92,58,.08),rgba(240,122,90,.06));border-color:rgba(224,92,58,.3);color:var(--coral)}
+.ans-both{background:linear-gradient(135deg,rgba(92,63,173,.08),rgba(123,95,212,.06));border-color:rgba(92,63,173,.3);color:var(--purple)}
+
+.ans-ai:hover:not(:disabled){background:linear-gradient(135deg,var(--teal),var(--teal-light));color:var(--white);border-color:var(--teal);box-shadow:0 4px 16px rgba(14,140,140,.35);transform:translateY(-2px)}
+.ans-human:hover:not(:disabled){background:linear-gradient(135deg,var(--coral),var(--coral-light));color:var(--white);border-color:var(--coral);box-shadow:0 4px 16px rgba(224,92,58,.35);transform:translateY(-2px)}
+.ans-both:hover:not(:disabled){background:linear-gradient(135deg,var(--purple),var(--purple-light));color:var(--white);border-color:var(--purple);box-shadow:0 4px 16px rgba(92,63,173,.35);transform:translateY(-2px)}
+
 .ans-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.ans-btn:disabled{cursor:default;transform:none}
-.ans-btn.sel-correct{background:var(--correct-bg);border-color:var(--correct-border);color:var(--correct-text)}
-.ans-btn.sel-wrong{background:var(--wrong-bg);border-color:var(--wrong-border);color:var(--wrong-text)}
-.ans-btn.reveal{background:var(--correct-bg);border-color:var(--correct-border);color:var(--correct-text)}
-.ans-btn.dim{opacity:.35}
+.ans-btn:disabled{cursor:default;transform:none!important}
+
+/* result states */
+.sel-correct{background:linear-gradient(135deg,var(--mint),var(--mint-light))!important;color:var(--white)!important;border-color:var(--mint)!important;box-shadow:0 4px 18px rgba(26,171,122,.35)!important}
+.sel-wrong{background:linear-gradient(135deg,#c0392b,#e05252)!important;color:var(--white)!important;border-color:#c0392b!important;box-shadow:0 4px 14px rgba(192,57,43,.3)!important}
+.reveal-correct{background:linear-gradient(135deg,var(--mint),var(--mint-light))!important;color:var(--white)!important;border-color:var(--mint)!important;opacity:.8!important}
+.dim{opacity:.25!important}
 
 /* feedback */
 .feedback{
-  border-radius:8px;padding:13px 16px;margin-bottom:16px;
-  display:none;animation:fadeUp .25s ease;
+  border-radius:10px;padding:14px 18px;margin-bottom:12px;
+  display:none;animation:pop .28s cubic-bezier(.34,1.56,.64,1);
 }
 .feedback.show{display:block}
-.feedback.fb-correct{background:var(--correct-bg);border:1px solid var(--correct-border)}
-.feedback.fb-wrong{background:var(--wrong-bg);border:1px solid var(--wrong-border)}
-.feedback.fb-both{background:var(--both-bg);border:1px solid var(--both-border)}
-.fb-verdict{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px}
-.fb-correct .fb-verdict{color:var(--correct-text)}
-.fb-wrong .fb-verdict{color:var(--wrong-text)}
-.fb-both .fb-verdict{color:var(--both-text)}
-.fb-exp{font-size:.86rem;color:#2c3a4a;line-height:1.6;margin-bottom:6px}
-.fb-why{font-size:.8rem;color:var(--gray-text);border-top:1px solid rgba(0,0,0,.07);padding-top:6px;line-height:1.55}
-.fb-why strong{color:var(--navy-mid)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{from{opacity:0;transform:scale(.95) translateY(6px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+.fb-correct{background:linear-gradient(135deg,#eafaf2,#d4f5e4);border:1.5px solid #a3d4b5}
+.fb-wrong{background:linear-gradient(135deg,#fef3f0,#fde0d8);border:1.5px solid #e8b8ae}
+.fb-both{background:linear-gradient(135deg,#f0eaff,#e0d4f8);border:1.5px solid #c4adf0}
+
+.fb-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.fb-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.fb-correct .fb-icon{background:var(--mint);color:var(--white)}
+.fb-wrong .fb-icon{background:#c0392b;color:var(--white)}
+.fb-both .fb-icon{background:var(--purple);color:var(--white)}
+.fb-verdict{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em}
+.fb-correct .fb-verdict{color:#0d6b46}
+.fb-wrong .fb-verdict{color:#8b2010}
+.fb-both .fb-verdict{color:#3d2090}
+.fb-exp{font-size:.85rem;color:#2c3a4a;line-height:1.62;margin-bottom:8px}
+.fb-why{
+  font-size:.78rem;color:var(--gray-text);
+  border-top:1px solid rgba(0,0,0,.07);padding-top:7px;line-height:1.55;
+}
+.fb-why strong{color:var(--navy2)}
 
 /* panel footer */
 .panel-foot{
-  padding:10px 24px 14px;
-  display:flex;justify-content:flex-end;
-  flex-shrink:0;
-  border-top:1px solid #edf0f4;
+  padding:8px 24px 12px;display:flex;justify-content:flex-end;align-items:center;
+  flex-shrink:0;border-top:1px solid #edf0f4;gap:10px;
 }
+.q-counter{font-size:.75rem;color:var(--gray-text);font-weight:600}
 .next-btn{
-  background:var(--navy);color:var(--white);
-  border:none;border-radius:7px;
-  padding:10px 26px;font-size:.88rem;font-weight:700;
-  cursor:pointer;letter-spacing:.03em;
-  transition:background .15s,transform .15s,box-shadow .15s;
-  display:none;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  color:var(--white);border:none;border-radius:8px;
+  padding:10px 24px;font-size:.87rem;font-weight:800;
+  cursor:pointer;letter-spacing:.04em;display:none;
+  transition:all .18s;box-shadow:0 4px 14px rgba(13,31,60,.25);
 }
 .next-btn.show{display:inline-block}
-.next-btn:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:0 4px 12px rgba(13,31,60,.2)}
+.next-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(13,31,60,.35)}
 .next-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
 /* ── END SCREEN ── */
-.end-screen{display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px 28px;text-align:center;gap:10px;flex:1}
+.end-screen{display:none;flex-direction:column;align-items:center;justify-content:center;padding:18px 28px;gap:10px;flex:1;text-align:center}
 .end-screen.show{display:flex}
-.end-badge{width:72px;height:72px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center}
-.end-badge svg{width:34px;height:34px}
-.end-score{font-size:2.2rem;font-weight:800;color:var(--navy);line-height:1}
-.end-score small{font-size:.95rem;font-weight:500;color:var(--gray-text)}
-.end-gold-line{width:40px;height:3px;background:var(--gold);border-radius:2px}
-.end-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gold)}
-.end-msg{font-size:.86rem;color:#3a4a5e;line-height:1.7;max-width:520px}
-.takeaway{background:var(--navy);border-radius:8px;padding:14px 20px;text-align:left;width:100%;max-width:520px}
-.takeaway h3{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);font-weight:700;margin-bottom:8px}
-.takeaway ul{list-style:none}
-.takeaway li{color:#c8d4e8;font-size:.8rem;padding:3px 0 3px 16px;position:relative;line-height:1.5}
-.takeaway li::before{content:'›';position:absolute;left:0;color:var(--gold);font-weight:700}
-.play-btn{
-  background:var(--gold);color:var(--navy);
-  border:none;border-radius:7px;
-  padding:11px 32px;font-size:.9rem;font-weight:800;
-  cursor:pointer;letter-spacing:.03em;
-  transition:background .15s,transform .15s,box-shadow .15s;
+.trophy{font-size:3rem;line-height:1;animation:bounce 1s ease}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.end-score-wrap{display:flex;align-items:baseline;gap:4px}
+.end-score-num{font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.end-score-denom{font-size:1.1rem;color:var(--gray-text);font-weight:600}
+.end-tagline{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--teal)}
+.end-divider{width:50px;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:2px}
+.end-msg{font-size:.84rem;color:#3a4a5e;line-height:1.7;max-width:500px}
+.takeaway{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-radius:10px;padding:14px 20px;text-align:left;width:100%;max-width:500px;
 }
-.play-btn:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 4px 14px rgba(184,154,78,.3)}
+.takeaway h3{font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-light);font-weight:800;margin-bottom:8px}
+.takeaway ul{list-style:none}
+.takeaway li{color:rgba(255,255,255,.75);font-size:.78rem;padding:3px 0 3px 18px;position:relative;line-height:1.5}
+.takeaway li::before{content:'✦';position:absolute;left:0;color:var(--teal-light);font-size:.55rem;top:6px}
+.play-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--navy);border:none;border-radius:9px;
+  padding:12px 34px;font-size:.92rem;font-weight:900;
+  cursor:pointer;letter-spacing:.04em;
+  transition:all .18s;box-shadow:0 4px 18px rgba(201,162,39,.4);
+}
+.play-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,39,.5)}
 .play-btn:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 </style>
 </head>
 <body>
-
 <div class="shell">
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-icon">
-      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="9" cy="9" r="8" stroke="#b89a4e" stroke-width="1.5"/>
-        <path d="M6 9.5l2 2 4-4.5" stroke="#b89a4e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="header-text">
-      <h1>AI Fundamentals · What Is AI?</h1>
-      <p>AI makes everyday tasks easier by handling repetitive and complex actions — from recommending movies to helping doctors diagnose diseases. Smart assistants work alongside people to make outcomes smoother and smarter.</p>
-    </div>
-  </header>
-
-  <!-- LEAD -->
-  <div class="lead">
-    <p>Now test your instincts: Which tasks are best handled by AI, by humans, or by both working together?</p>
-  </div>
 
   <!-- GAME PANEL -->
   <div class="panel" id="panel">
-
-    <!-- PROGRESS -->
-    <div class="prog-strip">
-      <div class="prog-meta">
-        <span class="prog-label" id="progLabel">Question 1 of 10</span>
-        <span class="prog-score" id="scoreLabel">Score: 0</span>
+    <div class="prog">
+      <div class="prog-row">
+        <span class="prog-lbl" id="progLbl">Question 1 of 10</span>
+        <div class="prog-score"><span class="score-pill" id="scorePill">Score: 0 / 10</span></div>
       </div>
       <div class="bar-track"><div class="bar-fill" id="barFill" style="width:0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10"></div></div>
     </div>
 
-    <!-- SCENARIO AREA -->
-    <div class="panel-inner" id="scenarioArea"></div>
+    <div class="panel-body" id="panelBody"></div>
 
-    <!-- PANEL FOOTER -->
     <div class="panel-foot" id="panelFoot">
+      <span class="q-counter" id="qCounter"></span>
       <button class="next-btn" id="nextBtn"></button>
     </div>
 
-    <!-- END SCREEN -->
     <div class="end-screen" id="endScreen">
-      <div class="end-badge">
-        <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="16" stroke="#b89a4e" stroke-width="1.8"/><path d="M9 17.5l5.5 5.5L25 12" stroke="#b89a4e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="trophy" id="trophy">🏆</div>
+      <div class="end-score-wrap">
+        <span class="end-score-num" id="finalScore">0</span>
+        <span class="end-score-denom">/ 10</span>
       </div>
-      <div class="end-score"><span id="finalScore">0</span><small> / 10</small></div>
-      <div class="end-label">Module Complete</div>
-      <div class="end-gold-line"></div>
+      <div class="end-tagline">Module Complete</div>
+      <div class="end-divider"></div>
       <p class="end-msg">Great job exploring how AI works in the real world. In many financial-services tasks, AI helps by finding patterns, processing information quickly, and supporting efficiency. But human judgment, empathy, accountability, and oversight still matter. The strongest outcomes often come from AI and people working together.</p>
       <div class="takeaway">
         <h3>Key Takeaways</h3>
         <ul>
           <li>AI excels at speed, scale, pattern detection, and repetitive tasks.</li>
-          <li>Humans are essential for empathy, judgment, accountability, and nuanced decisions.</li>
-          <li>In financial services, the best outcomes often come from AI and people working together.</li>
-          <li>AI supports decision-making — but humans remain responsible.</li>
+          <li>Humans are essential for empathy, judgment, and accountability.</li>
+          <li>The best financial outcomes often come from AI and people together.</li>
+          <li>AI supports decisions — but humans remain responsible.</li>
         </ul>
       </div>
-      <button class="play-btn" id="playAgain">Play Again</button>
+      <button class="play-btn" id="playAgain">🔄 Play Again</button>
     </div>
+  </div>
 
-  </div><!-- /panel -->
-
-</div><!-- /shell -->
-
-<div aria-live="polite" aria-atomic="true" class="sr-only" id="liveRegion"></div>
+</div>
+<div aria-live="polite" aria-atomic="true" class="sr-only" id="liveR"></div>
 
 <script>
 const Q=[
   {id:1,title:"Detecting Unusual Transaction Activity",desc:"A system reviews thousands of transactions and flags unusual patterns that may suggest fraud.",correct:"AI",exp:"AI is especially strong at scanning large amounts of transaction data quickly and spotting anomalies that might be missed manually.",why:"This shows how AI can improve speed and scale in fraud monitoring."},
   {id:2,title:"Reassuring a Worried Client After Market Volatility",desc:"A client is anxious about recent market changes and wants advice, reassurance, and empathy.",correct:"Human",exp:"A human advisor is best equipped to understand emotion, build trust, and respond with judgment and empathy.",why:"AI can support with data, but relationship-building still depends on people."},
-  {id:3,title:"Drafting a Personalized Client Follow-Up Email",desc:"A follow-up email needs to be written after a client meeting, including next steps and a professional tone.",correct:"Both",exp:"AI can help draft the message quickly, but a person should review it to make sure it is accurate, personalized, and appropriate.",why:"This reinforces that AI can assist communication without replacing human oversight."},
+  {id:3,title:"Drafting a Personalized Client Follow-Up Email",desc:"A follow-up email needs to be written after a client meeting, including next steps and a professional tone.",correct:"Both",exp:"AI can help draft the message quickly, but a person should review it to ensure it's accurate, personalized, and appropriate.",why:"This reinforces that AI can assist communication without replacing human oversight."},
   {id:4,title:"Predicting Short-Term Market Movements with Certainty",desc:"A tool claims it can predict exactly what the market will do next week.",correct:"Human",exp:"AI can analyze trends and probabilities, but no system can predict the market with certainty. Human judgment is needed to interpret risk responsibly.",why:"Learners see that AI supports forecasting, but does not guarantee outcomes."},
   {id:5,title:"Reviewing Thousands of Documents for Key Terms",desc:"A team needs to scan a large set of documents to find references to specific topics, terms, or disclosures.",correct:"AI",exp:"AI can quickly search, sort, and categorize large volumes of information far faster than manual review alone.",why:"This highlights AI's strength in handling repetitive, high-volume tasks."},
   {id:6,title:"Making a Final Compliance Decision",desc:"A case has been flagged for possible compliance concerns, and a final decision must be made.",correct:"Human",exp:"AI can help surface risks, but final compliance decisions should be made by qualified people who understand policies, regulations, and context.",why:"This reinforces accountability and responsible use of AI."},
@@ -289,49 +288,71 @@ const Q=[
   {id:10,title:"Evaluating Whether an AI Recommendation Should Be Trusted",desc:"An AI system produces an investment-related recommendation, and someone needs to decide whether it is reasonable.",correct:"Both",exp:"AI can generate recommendations based on data, but people must review the output, question it, and decide whether it makes sense in context.",why:"This is the core lesson: AI can support decisions, but humans remain responsible."}
 ];
 
+const icons={AI:'🤖',Human:'🧑',Both:'🤝'};
+const colors={AI:'ans-ai',Human:'ans-human',Both:'ans-both'};
+
 let cur=0,score=0,answered=false;
-const area=document.getElementById('scenarioArea');
+const body=document.getElementById('panelBody');
 const endScreen=document.getElementById('endScreen');
-const progLabel=document.getElementById('progLabel');
-const scoreLabel=document.getElementById('scoreLabel');
+const progLbl=document.getElementById('progLbl');
+const scorePill=document.getElementById('scorePill');
 const barFill=document.getElementById('barFill');
-const live=document.getElementById('liveRegion');
+const live=document.getElementById('liveR');
 const nextBtn=document.getElementById('nextBtn');
 const panelFoot=document.getElementById('panelFoot');
-const playAgain=document.getElementById('playAgain');
+const qCounter=document.getElementById('qCounter');
 
 function say(t){live.textContent='';setTimeout(()=>live.textContent=t,50);}
 
 function verdict(sel,cor){
-  if(sel===cor) return cor==='Both'?{lbl:'Best answer: Both',cls:'fb-both'}:{lbl:'Correct',cls:'fb-correct'};
-  if(cor==='Both') return{lbl:'Good thinking — best answer is Both',cls:'fb-both'};
-  return{lbl:'Not quite',cls:'fb-wrong'};
+  if(sel===cor){
+    if(cor==='Both')return{lbl:'✦ Best Answer: Both',cls:'fb-both',ico:'🤝'};
+    if(cor==='AI')return{lbl:'✓ Correct!',cls:'fb-correct',ico:'✓'};
+    return{lbl:'✓ Correct!',cls:'fb-correct',ico:'✓'};
+  }
+  if(cor==='Both')return{lbl:'Good thinking — best answer is Both',cls:'fb-both',ico:'💡'};
+  return{lbl:'Not quite — see the best answer',cls:'fb-wrong',ico:'✕'};
+}
+
+function trophyFor(s){
+  if(s===10)return'🏆';
+  if(s>=8)return'🥇';
+  if(s>=6)return'🥈';
+  if(s>=4)return'🥉';
+  return'🎯';
 }
 
 function render(){
   if(cur>=Q.length){showEnd();return;}
   answered=false;
-  const s=Q[cur];
   updateProg();
-
   nextBtn.className='next-btn';
   nextBtn.textContent=cur===Q.length-1?'See Results →':'Next →';
   nextBtn.setAttribute('aria-label',cur===Q.length-1?'See results':'Next scenario');
+  qCounter.textContent='';
 
-  area.innerHTML=`
-    <div class="q-num">Scenario ${s.id} of ${Q.length}</div>
+  const s=Q[cur];
+  body.innerHTML=`
+    <div class="q-eyebrow"><span class="q-dot"></span>Scenario ${s.id} of ${Q.length}</div>
     <div class="q-title">${s.title}</div>
     <div class="q-desc">${s.desc}</div>
     <div class="answers" role="group" aria-label="Choose your answer">
-      ${['AI','Human','Both'].map(o=>`<button class="ans-btn" data-v="${o}">${o}</button>`).join('')}
+      ${['AI','Human','Both'].map(o=>`
+        <button class="ans-btn ${colors[o]}" data-v="${o}" aria-label="${o}">
+          <span style="font-size:1.1em;display:block;margin-bottom:3px">${icons[o]}</span>
+          ${o}
+        </button>`).join('')}
     </div>
     <div class="feedback" id="fb">
-      <div class="fb-verdict" id="fbV"></div>
+      <div class="fb-top">
+        <div class="fb-icon" id="fbIcon"></div>
+        <div class="fb-verdict" id="fbV"></div>
+      </div>
       <div class="fb-exp" id="fbE"></div>
       <div class="fb-why"><strong>Why it matters:</strong> <span id="fbW"></span></div>
     </div>`;
 
-  area.querySelectorAll('.ans-btn').forEach(b=>{
+  body.querySelectorAll('.ans-btn').forEach(b=>{
     b.addEventListener('click',()=>pick(b.dataset.v));
     b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')pick(b.dataset.v);});
   });
@@ -343,56 +364,56 @@ function pick(val){
   const s=Q[cur];
   if(val===s.correct)score++;
 
-  area.querySelectorAll('.ans-btn').forEach(b=>{
+  body.querySelectorAll('.ans-btn').forEach(b=>{
     b.disabled=true;
     const v=b.dataset.v;
     if(v===val&&v===s.correct)b.classList.add('sel-correct');
     else if(v===val)b.classList.add('sel-wrong');
-    else if(v===s.correct)b.classList.add('reveal');
+    else if(v===s.correct)b.classList.add('reveal-correct');
     else b.classList.add('dim');
   });
 
-  const {lbl,cls}=verdict(val,s.correct);
+  const {lbl,cls,ico}=verdict(val,s.correct);
   const fb=document.getElementById('fb');
+  document.getElementById('fbIcon').textContent=ico;
   document.getElementById('fbV').textContent=lbl;
   document.getElementById('fbE').textContent=s.exp;
   document.getElementById('fbW').textContent=s.why;
   fb.className=`feedback show ${cls}`;
 
-  scoreLabel.textContent=`Score: ${score}`;
+  scorePill.textContent=`Score: ${score} / 10`;
   nextBtn.classList.add('show');
   nextBtn.focus();
   say(`${lbl}. ${s.exp}`);
-
-  // scroll feedback into view within the panel-inner
   fb.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-nextBtn.addEventListener('click',()=>{cur++;render();area.scrollTop=0;});
+nextBtn.addEventListener('click',()=>{cur++;render();body.scrollTop=0;});
 
 function updateProg(){
-  progLabel.textContent=`Question ${cur+1} of ${Q.length}`;
+  progLbl.textContent=`Question ${cur+1} of ${Q.length}`;
   const pct=(cur/Q.length)*100;
   barFill.style.width=pct+'%';
   barFill.setAttribute('aria-valuenow',cur);
 }
 
 function showEnd(){
-  area.innerHTML='';
+  body.innerHTML='';
   panelFoot.style.display='none';
   endScreen.classList.add('show');
   document.getElementById('finalScore').textContent=score;
+  document.getElementById('trophy').textContent=trophyFor(score);
   barFill.style.width='100%';
   barFill.setAttribute('aria-valuenow',10);
-  progLabel.textContent='Complete';
+  progLbl.textContent='Complete ✦';
   say(`Module complete. You scored ${score} out of 10.`);
 }
 
-playAgain.addEventListener('click',()=>{
+document.getElementById('playAgain').addEventListener('click',()=>{
   cur=0;score=0;answered=false;
   endScreen.classList.remove('show');
   panelFoot.style.display='';
-  scoreLabel.textContent='Score: 0';
+  scorePill.textContent='Score: 0 / 10';
   render();
 });
 
